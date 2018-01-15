@@ -12,6 +12,7 @@ For example:
  persistence(4) === 0 // because 4 is already a one-digit number
 */
 
+// my attempt
 function persistence(num) {
   function countIterations(num, counter) {
 
@@ -31,7 +32,23 @@ function persistence(num) {
   return countIterations(num, 0);
 }
 
-console.log('final result for 39: ', persistence(39));
-console.log('final result for 4: ', persistence(4));
-console.log('final result for 25: ', persistence(25));
-console.log('final result for 999: ', persistence(999));
+// top of "best practices"
+function persistence(num) {
+  var times = 0;
+
+  num = num.toString();
+
+  while (num.length > 1) {
+    times++;
+    num = num.split('').map(Number).reduce((a, b) => a * b).toString();
+  }
+
+  return times;
+}
+
+// top of "clever"
+const persistence = num => {
+  return `${num}`.length > 1
+    ? 1 + persistence(`${num}`.split('').reduce((a, b) => a * +b))
+    : 0;
+}
