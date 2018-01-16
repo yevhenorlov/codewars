@@ -15,6 +15,9 @@ For example:
 // my attempt
 function persistence(num) {
   function countIterations(num, counter) {
+    if (num.toString().length <= 1) {
+      return counter;
+    }
 
     const result = Array
       .from(num.toString())
@@ -24,9 +27,6 @@ function persistence(num) {
         return acc;
       }, 1);
 
-    if (num.toString().length <= 1) {
-      return counter;
-    }
     return countIterations(result, counter+1)
   }
   return countIterations(num, 0);
