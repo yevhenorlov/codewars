@@ -19,15 +19,14 @@ function persistence(num) {
       return counter;
     }
 
-    const result = Array
-      .from(num.toString())
+    const result = Array.from(num.toString())
       .map(string => parseInt(string))
       .reduce((acc, num) => {
         acc *= num;
         return acc;
       }, 1);
 
-    return countIterations(result, counter+1)
+    return countIterations(result, counter + 1);
   }
   return countIterations(num, 0);
 }
@@ -40,7 +39,11 @@ function persistence(num) {
 
   while (num.length > 1) {
     times++;
-    num = num.split('').map(Number).reduce((a, b) => a * b).toString();
+    num = num
+      .split('')
+      .map(Number)
+      .reduce((a, b) => a * b)
+      .toString();
   }
 
   return times;
@@ -51,4 +54,4 @@ const persistence = num => {
   return `${num}`.length > 1
     ? 1 + persistence(`${num}`.split('').reduce((a, b) => a * +b))
     : 0;
-}
+};
